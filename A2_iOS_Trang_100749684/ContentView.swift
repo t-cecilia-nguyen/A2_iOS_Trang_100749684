@@ -32,6 +32,11 @@ struct ContentView: View {
                     }
                 }
                 .navigationTitle("Product List")
+                .navigationBarItems(trailing:
+                                        NavigationLink(destination: AddProductView()) {
+                    Image(systemName: "plus.circle.fill")
+                        .font(.title)
+                })
             }
         }
     }
