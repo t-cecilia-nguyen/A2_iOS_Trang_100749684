@@ -51,7 +51,7 @@ struct ContentView: View {
                     Text("Products List")
                         .font(.largeTitle.bold())
                         .accessibilityAddTraits(.isHeader)
-                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        .foregroundColor(.blue)
                 }
             }
             .navigationBarItems(trailing:
