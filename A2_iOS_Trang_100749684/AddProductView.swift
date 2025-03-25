@@ -27,8 +27,18 @@ struct AddProductView: View {
             TextField("Provider", text: $provider)
             
             Button("Add Product") {
-                
+                addProduct()
             }
+            .disabled(name.isEmpty || price.isEmpty)
+        }
+        .navigationTitle("Add a Product")
+        .foregroundColor(.blue)
+        .alert(isPresented: $showConfirmation) {
+            Alert(
+                title: Text("Success"),
+                message: Text("Product successfully added."),
+                dismissButton: .default(Text("OK"))
+            )
         }
     }
     
