@@ -16,26 +16,31 @@ struct ContentView: View {
         animation: .default)
     private var products: FetchedResults<Product>
     
-    @State private var searchText = ""
+    @State private var searchQuery = ""
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(products, id: \.id) { product in
-                    NavigationLink(destination: ProductDetailView(product: product)) {
-                        VStack(alignment: .leading) {
-                            Text(product.name ?? "Unknown product name")
-                                .font(.headline)
-                                .foregroundColor(.blue)
-                            Text(product.productDescription ?? "No product description")
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
-                        }
-                        .padding()
-                    }
-                }
-                .onDelete(perform: deleteProduct)
+            VStack {
+                TextField("Search for products...", text: $searchQuery)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .padding()
                 
+                List {
+                    ForEach(products, id: \.id) { product in
+                        NavigationLink(destination: ProductDetailView(product: product)) {
+                            VStack(alignment: .leading) {
+                                Text(product.name ?? "Unknown product name")
+                                    .font(.headline)
+                                    .foregroundColor(.blue)
+                                Text(product.productDescription ?? "No product description")
+                                    .font(.subheadline)
+                                    .foregroundColor(.gray)
+                            }
+                            .padding()
+                        }
+                    }
+                    .onDelete(perform: deleteProduct)                    
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -55,10 +60,13 @@ struct ContentView: View {
     }
     
     var filteredProducts: [Product] {
-        if searchText.isEmpty {
+        if searchQuery.isEmpty {
             return Array(products)
         } else {
-            return products.filter { $0.name?.contains(searchText) ?? false }
+            return products.filter {
+                ($0.name?.lowercased().contains(searchQuery.lowercased()) ?? false) ||
+                ($0.productDescription?.lowercased().contains(searchQuery.lowercased()) ?? false)
+            }
         }
     }
     
