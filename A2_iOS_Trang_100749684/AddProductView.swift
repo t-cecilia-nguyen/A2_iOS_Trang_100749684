@@ -50,4 +50,11 @@ struct AddProductView: View {
             print("Error saving product: \(error.localizedDescription)")
         }
     }
+    
+    private func clearForm() {
+        name = ""
+        description = ""
+        price = ""
+        provider = ""
+    }
 }
