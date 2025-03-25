@@ -31,13 +31,15 @@ struct ContentView: View {
                         }
                     }
                 }
-                .navigationTitle("Product List")
-                .navigationBarItems(trailing:
-                                        NavigationLink(destination: AddProductView()) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.title)
-                })
+                .onDelete(perform: deleteProduct)
+                
             }
+            .navigationTitle("Product List")
+            .navigationBarItems(trailing:
+                                    NavigationLink(destination: AddProductView()) {
+                Image(systemName: "plus.circle.fill")
+                    .font(.title)
+            })
         }
     }
     
@@ -46,6 +48,13 @@ struct ContentView: View {
             return Array(products)
         } else {
             return products.filter { $0.name?.contains(searchText) ?? false }
+        }
+    }
+    
+    private func deleteProduct(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { products[$0] }.forEach(viewContext.delete)
+            try? viewContext.save()
         }
     }
 }
