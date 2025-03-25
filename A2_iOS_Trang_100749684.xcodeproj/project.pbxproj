@@ -14,6 +14,7 @@
 		4ACD26072D930EB700A6B2BC /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD26062D930EB700A6B2BC /* Persistence.swift */; };
 		4ACD260A2D930EB700A6B2BC /* A2_iOS_Trang_100749684.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD26082D930EB700A6B2BC /* A2_iOS_Trang_100749684.xcdatamodeld */; };
 		4ACD26132D93166800A6B2BC /* ProductDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD26122D93166800A6B2BC /* ProductDetailView.swift */; };
+		4ACD26152D93197500A6B2BC /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACD26142D93197500A6B2BC /* AddProductView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		4ACD26062D930EB700A6B2BC /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4ACD26092D930EB700A6B2BC /* A2_iOS_Trang_100749684.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = A2_iOS_Trang_100749684.xcdatamodel; sourceTree = "<group>"; };
 		4ACD26122D93166800A6B2BC /* ProductDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailView.swift; sourceTree = "<group>"; };
+		4ACD26142D93197500A6B2BC /* AddProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				4ACD25FF2D930EB600A6B2BC /* ContentView.swift */,
 				4ACD26012D930EB700A6B2BC /* Assets.xcassets */,
 				4ACD26062D930EB700A6B2BC /* Persistence.swift */,
+				4ACD26142D93197500A6B2BC /* AddProductView.swift */,
 				4ACD26122D93166800A6B2BC /* ProductDetailView.swift */,
 				4ACD26082D930EB700A6B2BC /* A2_iOS_Trang_100749684.xcdatamodeld */,
 				4ACD26032D930EB700A6B2BC /* Preview Content */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACD26152D93197500A6B2BC /* AddProductView.swift in Sources */,
 				4ACD26072D930EB700A6B2BC /* Persistence.swift in Sources */,
 				4ACD26132D93166800A6B2BC /* ProductDetailView.swift in Sources */,
 				4ACD260A2D930EB700A6B2BC /* A2_iOS_Trang_100749684.xcdatamodeld in Sources */,
