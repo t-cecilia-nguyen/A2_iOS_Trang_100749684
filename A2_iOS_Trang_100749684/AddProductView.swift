@@ -10,29 +10,44 @@ import SwiftUI
 
 struct AddProductView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.presentationMode) private var presentationMode
     
     @State private var name = ""
     @State private var description = ""
     @State private var price = ""
     @State private var provider = ""
+    @State private var showConfirmation = false // confirm save
     
     var body: some View {
+        // Form to add products
         Form {
             TextField("Name", text: $name)
             TextField("Description", text: $description)
             TextField("Price", text: $price).keyboardType(.decimalPad)
             TextField("Provider", text: $provider)
             
-            Button("Save") {
-                let newProduct = Product(context: viewContext)
-                newProduct.id = UUID()
-                newProduct.name = name
-                newProduct.productDescription = description
-                newProduct.price = Double(price) ?? 0.0
-                newProduct.provider = provider
+            Button("Add Product") {
                 
-                try? viewContext.save()
             }
+        }
+    }
+    
+    private func addProduct() {
+        guard let priceValue = Double(price) else { return }
+        
+        let newProduct = Product(context: viewContext)
+        newProduct.id = UUID()
+        newProduct.name = name
+        newProduct.productDescription = description
+        newProduct.price = priceValue
+        newProduct.provider = provider
+        
+        do {
+            try viewContext.save()
+            clearForm() // reset form
+            showConfirmation = true // show confirmation alert
+        } catch {
+            print("Error saving product: \(error.localizedDescription)")
         }
     }
 }
