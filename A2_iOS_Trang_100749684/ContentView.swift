@@ -42,7 +42,8 @@ struct ContentView: View {
                             .padding()
                         }
                     }
-                    .onDelete(perform: deleteProduct)                    
+                    // swipe to delete
+                    .onDelete(perform: deleteProduct)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

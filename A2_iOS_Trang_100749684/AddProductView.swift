@@ -43,8 +43,15 @@ struct AddProductView: View {
             }
             
         }
-        .navigationTitle("Add a Product")
-        .foregroundColor(.blue)
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Text("Add a Product")
+                    .font(.largeTitle.bold())
+                    .accessibilityAddTraits(.isHeader)
+                    .foregroundColor(.blue)
+            }
+        }
         .alert(isPresented: $showConfirmation) {
             Alert(
                 title: Text("Success"),
