@@ -20,21 +20,19 @@ struct ContentView: View {
         NavigationView {
             List {
                 ForEach(products, id: \.id) { product in
-                    VStack(alignment: .leading) {
-                        Text(product.name ?? "Unknown product name")
-                            .font(.headline)
-                        Text(product.productDescription ?? "No product description")
-                            .font(.subheadline)
+                    NavigationLink(destination: ProductDetailView(product: product)) {
+                        VStack(alignment: .leading) {
+                            Text(product.name ?? "Unknown product name")
+                                .font(.headline)
+                            Text(product.productDescription ?? "No product description")
+                                .font(.subheadline)
+                        }
                     }
                 }
+                .navigationTitle("Product List")
             }
-            .navigationTitle("Product List")
         }
     }
-
-    
-
-    
 }
 
 #Preview {
