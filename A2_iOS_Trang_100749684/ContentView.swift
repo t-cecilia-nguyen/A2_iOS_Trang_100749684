@@ -15,6 +15,8 @@ struct ContentView: View {
         sortDescriptors: [NSSortDescriptor(keyPath: \Product.name, ascending: true)],
         animation: .default)
     private var products: FetchedResults<Product>
+    
+    @State private var searchText = ""
 
     var body: some View {
         NavigationView {
@@ -31,6 +33,14 @@ struct ContentView: View {
                 }
                 .navigationTitle("Product List")
             }
+        }
+    }
+    
+    var filteredProducts: [Product] {
+        if searchText.isEmpty {
+            return Array(products)
+        } else {
+            return products.filter { $0.name?.contains(searchText) ?? false }
         }
     }
 }
