@@ -30,4 +30,20 @@ struct PersistenceController {
             }
         })
     }
+    
+    static var preview: PersistenceController = {
+        let result = PersistenceController()
+        let viewContext = result.container.viewContext
+        
+        for i in 0..<10 {
+            let newProduct = Product(context: viewContext)
+            newProduct.id = UUID()
+            newProduct.name = "Product \(i)"
+            newProduct.productDescription = "Description for product \(i)"
+            newProduct.price = Double(i) * 10.0
+            newProduct.provider = "Provider \(i)"
+        }
+        try? viewContext.save()
+        return result
+    }()
 }
