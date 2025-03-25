@@ -24,6 +24,9 @@ struct ContentView: View {
                 TextField("Search for products...", text: $searchQuery)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
+                    .onChange(of: searchQuery) {
+                        updateFetchRequest()
+                    }
                 
                 List {
                     ForEach(products, id: \.id) { product in
@@ -59,15 +62,17 @@ struct ContentView: View {
         }
     }
     
-    var filteredProducts: [Product] {
+    private func updateFetchRequest() {
+        let predicate: NSPredicate?
+        
         if searchQuery.isEmpty {
-            return Array(products)
+            predicate = nil // No filtering
         } else {
-            return products.filter {
-                ($0.name?.lowercased().contains(searchQuery.lowercased()) ?? false) ||
-                ($0.productDescription?.lowercased().contains(searchQuery.lowercased()) ?? false)
-            }
+            // case-insensitive, diacritic insensitive comparison
+            predicate = NSPredicate(format: "name CONTAINS[cd] %@ OR productDescription CONTAINS[cd] %@", searchQuery, searchQuery)
         }
+        
+        products.nsPredicate = predicate
     }
     
     private func deleteProduct(offsets: IndexSet) {
