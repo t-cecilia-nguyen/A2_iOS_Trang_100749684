@@ -17,7 +17,22 @@ struct AddProductView: View {
     @State private var provider = ""
     
     var body: some View {
-        
+        Form {
+            TextField("Name", text: $name)
+            TextField("Description", text: $description)
+            TextField("Price", text: $price).keyboardType(.decimalPad)
+            TextField("Provider", text: $provider)
+            
+            Button("Save") {
+                let newProduct = Product(context: viewContext)
+                newProduct.id = UUID()
+                newProduct.name = name
+                newProduct.productDescription = description
+                newProduct.price = Double(price) ?? 0.0
+                newProduct.provider = provider
+                
+                try? viewContext.save()
+            }
         }
     }
 }
