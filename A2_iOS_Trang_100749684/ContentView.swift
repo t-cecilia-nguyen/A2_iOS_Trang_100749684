@@ -26,15 +26,26 @@ struct ContentView: View {
                         VStack(alignment: .leading) {
                             Text(product.name ?? "Unknown product name")
                                 .font(.headline)
+                                .foregroundColor(.blue)
                             Text(product.productDescription ?? "No product description")
                                 .font(.subheadline)
+                                .foregroundColor(.gray)
                         }
+                        .padding()
                     }
                 }
                 .onDelete(perform: deleteProduct)
                 
             }
-            .navigationTitle("Product List")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Products List")
+                        .font(.largeTitle.bold())
+                        .accessibilityAddTraits(.isHeader)
+                        .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                }
+            }
             .navigationBarItems(trailing:
                                     NavigationLink(destination: AddProductView()) {
                 Image(systemName: "plus.circle.fill")
